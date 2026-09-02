@@ -1,0 +1,769 @@
+/* =========================================================
+   Farzin Faghihi — personal site
+   Typography, spacing and layout values extracted from the
+   Portavia reference (framer presets monjet / 1yryej1 /
+   12q7ivy / 17cdd8a). Sparse by design: sections breathe at
+   viewport height, one idea per screen.
+   Logical properties throughout, so one sheet serves RTL+LTR.
+   ========================================================= */
+
+:root {
+  --bg:        #0f0f0f;
+  --surface:   #1a1a1b;
+  --line:      #303030;
+  --fg:        #ffffff;
+  --fg-mute:   #8f8f8f;   /* the reference's second display word */
+  --fg-soft:   #b5b5b5;
+  --accent:    #d0ff71;
+  --accent-fg: #0f0f0f;
+  --ph-a:      #1d1d1e;
+  --ph-b:      #2a2a2c;
+  --pill-bg:   #0f0f0fe6;
+
+  --font-fa: "Vazirmatn", system-ui, sans-serif;
+  --font-en: "Inter", system-ui, sans-serif;
+  --font-display: "Antonio", "Vazirmatn", system-ui, sans-serif;
+  --font: var(--font-fa);
+
+  --shell: 1200px;
+  --gutter: 40px;
+  --radius: 20px;          /* the reference's only card radius */
+
+  --t: 240ms;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+:root[data-theme="light"] {
+  --bg:        #ffffff;
+  --surface:   #f5f5f5;
+  --line:      #dadada;
+  --fg:        #0f0f0f;
+  --fg-mute:   #b5b5b5;
+  --fg-soft:   #5c5c5c;
+  --accent:    #5e67e6;
+  --accent-fg: #ffffff;
+  --ph-a:      #ececec;
+  --ph-b:      #dcdcdc;
+  --pill-bg:   #ffffffe6;
+}
+
+html[lang="en"] { --font: var(--font-en); }
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-block-start: 120px;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  /* the reference sets body at 16px / 300 / 1.5em — light, airy */
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background var(--t) var(--ease), color var(--t) var(--ease);
+}
+body.is-locked { overflow: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+ul { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3 { margin: 0; }
+p { margin: 0; }
+figure { margin: 0; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+
+.skip-link {
+  position: fixed;
+  inset-block-start: -100px;
+  inset-inline-start: 20px;
+  z-index: 200;
+  padding: 10px 18px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-radius: 999px;
+  transition: inset-block-start var(--t) var(--ease);
+}
+.skip-link:focus-visible { inset-block-start: 20px; }
+
+.shell { width: min(100% - 2 * var(--gutter), var(--shell)); margin-inline: auto; }
+
+.ico {
+  width: 18px; height: 18px; flex: none;
+  fill: none; stroke: currentColor;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+}
+html[dir="rtl"] .ico--arrow { transform: scaleX(-1); }
+
+/* ---------- grain ----------
+   The reference tiles an animated noise GIF at 250px, blended
+   with color-dodge at 12%. Same effect, self-contained: an SVG
+   feTurbulence tile instead of an external asset. */
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .12;
+  mix-blend-mode: color-dodge;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 250px 250px;
+}
+:root[data-theme="light"] .noise { mix-blend-mode: multiply; opacity: .07; }
+
+/* ---------- image placeholders (swap for real <img>) ---------- */
+.ph {
+  display: block;
+  position: relative;
+  background: linear-gradient(135deg, var(--ph-a) 0%, var(--ph-b) 55%, var(--ph-a) 100%);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.ph::after {
+  content: attr(data-ph);
+  position: absolute;
+  inset-block-end: 12px;
+  inset-inline-end: 14px;
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .16em;
+  color: var(--fg-mute);
+  opacity: .55;
+}
+.ph--avatar   { width: 34px; height: 34px; border-radius: 50%; }
+.ph--avatar::after { content: none; }
+.ph--portrait { width: 100%; aspect-ratio: 4 / 5; }
+.ph--tilt     { width: 100%; aspect-ratio: 4 / 5; }
+.ph--card     { width: 100%; aspect-ratio: 4 / 3; }
+.ph--post     { width: 100%; aspect-ratio: 16 / 10; }
+
+/* =========================================================
+   TYPE SCALE — exact values from the reference presets
+   ========================================================= */
+
+/* preset "monjet": Antonio 700, 120/96/56px, ls -.03em, lh 1.1, uppercase */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 120px;
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+}
+.display--mute { color: var(--fg-mute); }
+
+/* Antonio carries no Persian glyphs, so Persian gets Vazirmatn
+   at a smaller size — the same optical weight, not the same number. */
+html[lang="fa"] .display {
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 86px;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  text-transform: none;
+}
+
+/* preset "1yryej1": Antonio 700, 60/48/42px, lh 1.3, uppercase */
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+html[lang="fa"] .h2 {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 44px;
+  text-transform: none;
+}
+
+/* preset "12q7ivy": Antonio 400, 32/24px, lh 1.3, uppercase */
+.h3, .acc__t, .card__title, .post h3, .hero__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+html[lang="fa"] .h3,
+html[lang="fa"] .acc__t,
+html[lang="fa"] .card__title,
+html[lang="fa"] .post h3,
+html[lang="fa"] .hero__name {
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 24px;
+  text-transform: none;
+}
+
+/* preset "17cdd8a": Inter 300, 16px (18 for lead), lh 1.5 */
+.lead { font-size: 18px; font-weight: 300; line-height: 1.5; color: var(--fg-soft); }
+.lead--wide { max-width: 60ch; }
+
+/* =========================================================
+   PILL NAV — fixed, centred, blurred (reference: top 20px)
+   ========================================================= */
+.pill {
+  position: fixed;
+  inset-block-start: 20px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 28px;   /* the reference's pill radius, not a full round */
+  background: var(--pill-bg);
+  backdrop-filter: blur(5px);
+  transition: background var(--t) var(--ease), border-color var(--t) var(--ease);
+}
+html[dir="rtl"] .pill { transform: translateX(50%); }
+
+.pill__avatar { display: flex; flex: none; }
+.pill__links { display: flex; align-items: center; gap: 24px; font-size: 15px; }
+.pill__links a { color: var(--fg-soft); transition: color var(--t) var(--ease); }
+.pill__links a.is-active { color: var(--fg); }
+
+/* ---------- link hover: the label flips up to an accent copy ----------
+   Two stacked copies of the text inside a wrap that carries the
+   perspective. The second sits pre-rotated at +90deg about the
+   wrap's top edge; rotating the wrap -90deg swaps them. */
+.navlink {
+  display: block;
+  position: relative;
+  transform: perspective(1200px);
+  transform-origin: 50% 0%;
+  /* without this the child's rotateX is flattened into this
+     element's plane and the accent copy never becomes visible */
+  transform-style: preserve-3d;
+  transition: transform 420ms var(--ease);
+}
+.navlink__flip {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  transform: rotateX(90deg);
+  transform-origin: 50% 0%;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.pill__links a:hover .navlink { transform: perspective(1200px) rotateX(-90deg); }
+
+.pill__lang {
+  font-family: var(--font-en);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--fg-mute);
+  padding: 4px 6px;
+  transition: color var(--t) var(--ease);
+}
+.pill__lang:hover { color: var(--fg); }
+
+/* The reference layers an accent "Color BG" inside this button and
+   wipes it up on hover, rather than fading the whole control. */
+.pill__cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 9px 20px;
+  border-radius: 99px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 15px;
+  transition: color var(--t) var(--ease);
+}
+.pill__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--accent);
+  transform: translateY(101%);
+  transition: transform 380ms var(--ease);
+}
+.pill__cta:hover { color: var(--accent-fg); }
+.pill__cta:hover::before { transform: translateY(0); }
+
+/* ---------- pill state 2: "available for work" ----------
+   Past the hero the pill drops its links and collapses to a
+   status line, then expands again at the top of the page. */
+.pill__status {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding-inline-end: 12px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.pill.is-compact .pill__links,
+.pill.is-compact .pill__lang,
+.pill.is-compact .pill__cta { display: none; }
+.pill.is-compact .pill__status { display: inline-flex; }
+
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #27d974;
+  box-shadow: 0 0 0 0 rgba(39, 217, 116, .5);
+  animation: pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse {
+  70%  { box-shadow: 0 0 0 9px rgba(39, 217, 116, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(39, 217, 116, 0); }
+}
+
+.pill__burger { display: none; width: 34px; height: 34px; position: relative; }
+.pill__burger span {
+  position: absolute; inset-inline: 8px; height: 1.5px; background: var(--fg);
+  transition: transform var(--t) var(--ease);
+}
+.pill__burger span:first-child { inset-block-start: 13px; }
+.pill__burger span:last-child  { inset-block-start: 19px; }
+.pill__burger[aria-expanded="true"] span:first-child { transform: translateY(3px) rotate(45deg); }
+.pill__burger[aria-expanded="true"] span:last-child  { transform: translateY(-3px) rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed; inset: 0; z-index: 9;
+  background: var(--bg);
+  display: grid; place-content: center; gap: 20px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity var(--t) var(--ease);
+}
+.mobile-nav.is-open { opacity: 1; }
+.mobile-nav nav { display: grid; gap: 20px; }
+.mobile-nav a {
+  font-family: var(--font-display);
+  font-weight: 400; font-size: 40px; text-transform: uppercase;
+}
+html[lang="fa"] .mobile-nav a { font-family: var(--font); font-weight: 500; font-size: 30px; text-transform: none; }
+
+/* ---------- lime switch, bottom centre ---------- */
+.switch {
+  position: fixed;
+  inset-block-end: 24px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 46px; height: 24px;
+  border-radius: 999px;
+  background: var(--accent);
+  padding: 3px;
+  display: flex;
+}
+html[dir="rtl"] .switch { transform: translateX(50%); }
+.switch__knob {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--accent-fg);
+  transition: transform var(--t) var(--ease);
+}
+.switch[aria-pressed="true"] .switch__knob { transform: translateX(22px); }
+html[dir="rtl"] .switch[aria-pressed="true"] .switch__knob { transform: translateX(-22px); }
+
+/* =========================================================
+   HERO — 100vh, two display words with the portrait between
+   ========================================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 120px var(--gutter) 80px;
+  overflow: hidden;
+}
+.spark {
+  position: absolute;
+  inset-block-start: 26%;
+  inset-inline-start: 9%;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hero__grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 44px);
+  width: 100%;
+  max-width: var(--shell);
+}
+.hero__side { flex: 1 1 0; min-width: 0; display: flex; }
+.hero__side--a { justify-content: flex-end; }
+.hero__side--b { justify-content: flex-start; }
+
+/* min-content wrapper so the floating name and subtitle
+   anchor to the display word, exactly as in the reference */
+.hero__wrap { position: relative; width: min-content; }
+
+.hero__name {
+  position: absolute;
+  inset-block-end: 100%;
+  inset-inline-start: 5px;
+  margin-block-end: 4px;
+  white-space: nowrap;
+  color: var(--fg);
+}
+.hero__sub {
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-end: 0;
+  margin-block-start: 14px;
+  width: 90%;
+  min-width: 240px;
+  text-align: end;
+  color: var(--fg-soft);
+}
+
+.hero__portrait { position: relative; flex: none; width: clamp(180px, 24vw, 330px); }
+.hero__badge {
+  position: absolute;
+  inset-block-end: -22px;
+  inset-inline-start: -34px;
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+}
+.hero__badge svg {
+  width: 34px; height: 34px;
+  fill: none; stroke: var(--accent-fg);
+  stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* =========================================================
+   SECTIONS — generous vertical rhythm, one idea per screen
+   ========================================================= */
+.section { padding-block: 140px; position: relative; }
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-block-end: 64px;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  padding-block-end: 4px;
+  border-block-end: 1px solid var(--line);
+  transition: gap var(--t) var(--ease), border-color var(--t) var(--ease);
+}
+.link-arrow:hover { gap: 16px; border-block-end-color: var(--accent); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 30px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 400;
+  transition: transform var(--t) var(--ease);
+}
+.btn:hover { transform: translateY(-2px); }
+
+/* ---------- split: text column + tilted image ---------- */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 600px) minmax(0, 1fr);
+  gap: 80px;
+  align-items: center;
+}
+.split__text > .lead { margin-block-start: 20px; max-width: 46ch; }
+.split__media { display: flex; justify-content: center; }
+
+/* FAQ reuses the split, but the heading is short and the list is
+   the substance — so it gets the wider column and both align top. */
+.split--faq {
+  grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+  align-items: start;
+}
+.acc-list--wide { margin-block-start: 0; }
+
+/* The reference swings this image out of plane as it scrolls
+   past. JS writes --tilt (roughly -1 → 1 across the viewport);
+   with no JS it simply sits at the mid-tilt. */
+.ph--tilt {
+  max-width: 380px;
+  transform:
+    perspective(1200px)
+    rotateY(calc(var(--tilt-dir, 1) * (14deg + var(--tilt, 0) * 12deg)))
+    rotate(calc(var(--tilt-dir, 1) * -3deg));
+}
+html[dir="rtl"] .ph--tilt { --tilt-dir: -1; }
+
+/* ---------- accordion (services + faq) ---------- */
+.acc-list { margin-block-start: 40px; }
+.acc { border-block-end: 1px solid var(--line); }
+.acc__btn {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 22px;
+  text-align: start;
+  transition: color var(--t) var(--ease);
+}
+.acc__btn:hover { color: var(--accent); }
+
+/* ---------- hover preview that trails the cursor ----------
+   JS writes --px/--py from the pointer; the row only reveals
+   it, so nothing moves on touch or with reduced motion. */
+/* Anchored just past the chevron rather than tracking the pointer
+   across the row. Titles grow from the opposite edge, so this stays
+   clear of the label at any length, in either writing direction.
+   The pointer only nudges it (JS clamps --px/--py). */
+.acc__preview {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 56px;
+  z-index: 2;
+  width: 190px;
+  pointer-events: none;
+  opacity: 0;
+  transform:
+    translate(var(--px, 0px), calc(-50% + var(--py, 0px)))
+    scale(.82) rotate(-8deg);
+  transition: opacity 260ms var(--ease), transform 420ms var(--ease);
+}
+.acc__preview .ph { aspect-ratio: 3 / 2; }
+.acc__btn:hover .acc__preview {
+  opacity: 1;
+  transform: translate(var(--px, 0px), calc(-50% + var(--py, 0px))) scale(1) rotate(-5deg);
+}
+.acc__t { display: inline-flex; align-items: baseline; gap: 10px; }
+.acc__t i { font-style: normal; color: var(--fg-mute); }
+
+/* Chevron points down when closed, up when open. Physical
+   borders on purpose: a down arrow is a down arrow in RTL too,
+   and border-inline-end would flip it sideways. */
+.acc__ico {
+  width: 12px; height: 12px; flex: none;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-block-end: 4px;
+  transition: transform var(--t) var(--ease);
+}
+.acc__btn[aria-expanded="true"] .acc__ico { transform: rotate(-135deg); margin-block: 4px 0; }
+
+.acc__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--t) var(--ease);
+}
+.acc__panel > p { overflow: hidden; min-height: 0; color: var(--fg-soft); max-width: 52ch; }
+.acc.is-open .acc__panel { grid-template-rows: 1fr; }
+.acc.is-open .acc__panel > p { padding-block-end: 22px; }
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+.about { text-align: center; display: grid; justify-items: center; gap: 24px; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  width: 100%;
+  margin-block-start: 60px;
+  padding-block-start: 48px;
+  border-block-start: 1px solid var(--line);
+}
+.stats li { display: grid; gap: 6px; }
+.stats__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+html[lang="fa"] .stats__num { font-family: var(--font); font-weight: 700; font-size: 48px; }
+.stats__lbl { font-size: 14px; color: var(--fg-mute); }
+
+/* =========================================================
+   WORK
+   ========================================================= */
+.work { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.card { display: grid; gap: 20px; }
+.card .ph { transition: transform 500ms var(--ease); }
+.card:hover .ph { transform: translateY(-8px); }
+.card__body { display: grid; gap: 8px; }
+.tag {
+  justify-self: start;
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+html[lang="fa"] .tag { font-family: var(--font); letter-spacing: 0; text-transform: none; font-size: 13px; }
+
+/* =========================================================
+   QUOTE — one voice, centred, lots of air
+   ========================================================= */
+.quote { max-width: 46ch; margin-inline: auto; text-align: center; display: grid; gap: 32px; }
+.quote blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+html[lang="fa"] .quote blockquote { font-family: var(--font); font-weight: 400; font-size: 24px; line-height: 1.7; text-transform: none; }
+.quote figcaption { display: grid; gap: 2px; }
+.quote figcaption b { font-weight: 400; }
+.quote figcaption small { font-size: 14px; color: var(--fg-mute); }
+
+/* =========================================================
+   INSIGHTS
+   ========================================================= */
+.posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+.post { display: grid; gap: 12px; align-content: start; }
+.post .ph { transition: transform 500ms var(--ease); }
+.post:hover .ph { transform: translateY(-8px); }
+.post time { font-size: 13px; color: var(--fg-mute); }
+
+/* =========================================================
+   CTA
+   ========================================================= */
+.cta { padding-block: 180px; text-align: center; }
+.cta__inner { display: grid; justify-items: center; gap: 48px; }
+.display--cta { font-size: 96px; }
+html[lang="fa"] .display--cta { font-size: 68px; }
+.display--cta span { display: block; }
+.cta__links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 28px; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer { padding-block: 40px 60px; border-block-start: 1px solid var(--line); }
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 14px;
+  color: var(--fg-mute);
+}
+.footer__social { display: flex; gap: 20px; }
+.footer__social a { transition: color var(--t) var(--ease); }
+.footer__social a:hover { color: var(--fg); }
+
+/* =========================================================
+   SCROLL REVEAL — applied by JS to section children
+   ========================================================= */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* the hero words slide in from opposite sides, as on the reference */
+.hero__side--a { transition: opacity 800ms var(--ease), transform 800ms var(--ease); }
+.hero__side--b { transition: opacity 800ms var(--ease), transform 800ms var(--ease); }
+.hero:not(.is-ready) .hero__side--a { opacity: 0; transform: translateX(80px); }
+.hero:not(.is-ready) .hero__side--b { opacity: 0; transform: translateX(-80px); }
+.hero:not(.is-ready) .hero__portrait { opacity: 0; }
+.hero__portrait { transition: opacity 800ms 200ms var(--ease); }
+
+/* =========================================================
+   RESPONSIVE — reference steps: 120 → 96 → 56px display
+   ========================================================= */
+@media (max-width: 1100px) {
+  .display { font-size: 96px; }
+  html[lang="fa"] .display { font-size: 68px; }
+  .h2 { font-size: 48px; }
+  html[lang="fa"] .h2 { font-size: 36px; }
+  .display--cta { font-size: 72px; }
+  html[lang="fa"] .display--cta { font-size: 52px; }
+  .section { padding-block: 110px; }
+  .split { grid-template-columns: 1fr; gap: 56px; }
+  .split__media { order: -1; }
+  .ph--tilt { max-width: 300px; }
+}
+
+@media (max-width: 760px) {
+  :root { --gutter: 20px; }
+  .display { font-size: 56px; }
+  html[lang="fa"] .display { font-size: 44px; }
+  .h2 { font-size: 42px; }
+  html[lang="fa"] .h2 { font-size: 30px; }
+  .h3, .acc__t, .card__title, .post h3, .hero__name { font-size: 24px; }
+  html[lang="fa"] .h3,
+  html[lang="fa"] .acc__t,
+  html[lang="fa"] .card__title,
+  html[lang="fa"] .post h3,
+  html[lang="fa"] .hero__name { font-size: 20px; }
+  .display--cta { font-size: 48px; }
+  html[lang="fa"] .display--cta { font-size: 38px; }
+  .stats__num { font-size: 42px; }
+  html[lang="fa"] .stats__num { font-size: 34px; }
+  .quote blockquote { font-size: 24px; }
+
+  .pill__links, .pill__cta { display: none; }
+  .pill__burger { display: block; }
+
+  /* stack the hero: name, word, portrait, word, subtitle */
+  .hero { padding-block: 110px 100px; }
+  .hero__grid { flex-direction: column; gap: 24px; }
+  .hero__side { width: 100%; justify-content: center; }
+  .hero__wrap { width: auto; text-align: center; }
+  .hero__name, .hero__sub {
+    position: static;
+    width: auto;
+    text-align: center;
+    display: block;
+    margin: 0;
+  }
+  .hero__sub { margin-block-start: 16px; }
+  .hero__portrait { width: 220px; }
+  .hero__badge { width: 62px; height: 62px; inset-inline-start: -18px; }
+  .hero__badge svg { width: 26px; height: 26px; }
+  .spark { display: none; }
+
+  .section { padding-block: 90px; }
+  .cta { padding-block: 120px; }
+  .work, .posts { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+}
+
+/* =========================================================
+   REDUCED MOTION — final state, no movement
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .hero:not(.is-ready) .hero__side--a,
+  .hero:not(.is-ready) .hero__side--b,
+  .hero:not(.is-ready) .hero__portrait { opacity: 1; transform: none; }
+}

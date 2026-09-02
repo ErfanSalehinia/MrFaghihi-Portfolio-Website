@@ -1,0 +1,24 @@
+# OS and editor litter
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+
+# Working files and superseded photographs — kept on disk, out of the deploy.
+# assets/img/'card-front 4.JPG' alone is 12.7 MB.
+assets/img/avatar 2.jpg
+assets/img/avatar-john.jpg
+assets/img/avatar-laura.jpg
+assets/img/avatar-michael.jpg
+assets/img/avatar-sarah.jpg
+assets/img/card-back3.jpeg
+assets/img/card-front 3.jpg
+assets/img/card-front 4.JPG
+assets/img/creator.png
+assets/img/work-4-4company.jpeg
+assets/img/work-4-company.psd
+assets/img/work3-2-training.jpeg
+*.psd
+
+# a nested clone of this same repo — redundant now that origin is wired here
+MrFaghihi/

@@ -1,2 +1,8 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Auto detect text files and normalise line endings
+* text=auto eol=lf
+
+# never touch binaries
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.psd binary

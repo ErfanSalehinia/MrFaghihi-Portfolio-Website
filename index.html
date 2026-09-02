@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farzin Faghihi — Founder &amp; CEO, Wira Bonyan Apadana</title>
+<meta name="description" content="Farzin Faghihi is the founder and CEO of Wira Bonyan Apadana, a dental materials company based in Isfahan, Iran.">
+<meta name="theme-color" content="#F4F4F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/avatar.jpg">
+
+<!-- Link previews. og:image should be an ABSOLUTE url once the domain is
+     known — WhatsApp in particular will not resolve a relative one. -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Farzin Faghihi — Founder &amp; CEO, Wira Bonyan Apadana">
+<meta property="og:description" content="Dental materials for the clinics, laboratories and distributors that need them. Isfahan, Iran, since 2013.">
+<meta property="og:image" content="assets/img/card-front.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- fine grain over the whole page (spec 1) -->
+<div class="noise" aria-hidden="true"></div>
+
+<!-- custom cursor (spec 2.2) — JS only mounts it for mouse users -->
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<!-- ============================================================
+     NAV PILL (spec 2.3) — open at top, collapsed once scrolled
+     ============================================================ -->
+<nav class="pill" id="pill" aria-label="Main">
+  <a class="pill__avatar" href="#hero" aria-label="Home">
+    <img src="assets/img/avatar.jpg" alt="Farzin Faghihi" width="368" height="368">
+  </a>
+
+  <div class="pill__open" id="pillOpen">
+    <div class="pill__links">
+      <a href="#hero"><span class="nl"><span>Home</span><span class="nl__flip">Home</span></span></a>
+      <a href="#about"><span class="nl"><span>About</span><span class="nl__flip">About</span></span></a>
+      <a href="#projects"><span class="nl"><span>Work</span><span class="nl__flip">Work</span></span></a>
+      <a href="#career"><span class="nl"><span>Career</span><span class="nl__flip">Career</span></span></a>
+    </div>
+    <a class="pill__cta" href="#contact">Contact</a>
+  </div>
+
+  <a class="pill__status" id="pillStatus" href="#contact">
+    <span>Open to partnerships</span>
+    <span class="dot" aria-hidden="true"></span>
+  </a>
+
+  <button class="pill__burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav" hidden>
+  <nav aria-label="Mobile">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Work</a>
+    <a href="#career">Career</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</div>
+
+<!-- theme switch, bottom centre (spec 2.4) -->
+<button class="switch" id="themeToggle" type="button" aria-label="Toggle light and dark theme" aria-pressed="true">
+  <span class="switch__knob"></span>
+</button>
+
+<main id="main">
+
+<!-- ============================================================
+     STAGE — hero + services + about share one sticky 3D card
+     (spec 3). The card is pinned mid-viewport and its rotation
+     is driven purely by scroll progress across this block.
+     ============================================================ -->
+<div class="stage" id="stage">
+
+  <div class="stage__pin" aria-hidden="true">
+    <div class="card3d" id="card3d">
+      <div class="card3d__face card3d__face--front">
+        <img src="assets/img/card-front.jpg" alt="" width="620" height="630" fetchpriority="high">
+      </div>
+      <div class="card3d__face card3d__face--back">
+        <img src="assets/img/card-back.jpeg" alt="" width="960" height="1200">
+      </div>
+    </div>
+    <span class="hi" id="hiBadge"><span class="hi__hand">✋</span><span class="hi__txt">Hi</span></span>
+  </div>
+
+  <!-- ---------------- 4.1 HERO ---------------- -->
+  <section class="hero" id="hero">
+    <div class="shell hero__inner">
+      <h1 class="sr-only">Farzin Faghihi — Founder and CEO of Wira Bonyan Apadana</h1>
+
+      <div class="hero__left">
+        <p class="hero__label"><span class="rv"><span>Farzin Faghihi</span></span></p>
+        <p class="display" aria-hidden="true"><span class="rv"><span>founder</span></span></p>
+      </div>
+
+      <div class="hero__gap"></div>
+
+      <div class="hero__right">
+        <p class="display" aria-hidden="true"><span class="rv"><span>&amp; ceo</span></span></p>
+        <p class="hero__sub">I lead Wira Bonyan Apadana — a dental materials company I founded in Isfahan in 2013</p>
+      </div>
+    </div>
+
+    <!-- mobile fallback for the disabled 3D card (spec 5) -->
+    <img class="stage__static" src="assets/img/card-front.jpg" alt="Farzin Faghihi" width="620" height="630" loading="lazy">
+  </section>
+
+  <!-- ---------------- 4.2 WHAT THE COMPANY DOES ----------------
+       DRAFT: the four headings follow the two areas LinkedIn lists on
+       Farzin's CEO role (business analysis, dental materials). The bullet
+       lists underneath are written from that, not quoted from him —
+       they need his review before this goes live.
+       ------------------------------------------------------------- -->
+  <section class="section service" id="service">
+    <div class="shell service__inner">
+      <div class="service__col">
+        <h2 class="h2">what we do</h2>
+        <p class="lead">Wira Bonyan Apadana brings dental materials to the clinics, laboratories and distributors that need them — chosen carefully, supplied reliably, supported after the sale.</p>
+
+        <div class="acc-list" id="serviceAcc">
+          <div class="acc">
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="svc1">
+              <span class="acc__n">1.</span>
+              <span class="acc__t">dental materials</span>
+              <span class="acc__ico" aria-hidden="true"></span>
+              <span class="acc__thumb" aria-hidden="true"><img src="assets/img/work-2-training.jpeg" alt="" width="1023" height="681" loading="lazy"></span>
+            </button>
+            <div class="acc__panel" id="svc1">
+              <ul>
+                <li>Restorative, endodontic and prosthetic materials</li>
+                <li>Equipment and consumables for clinics and laboratories</li>
+                <li>Sourcing directly from international manufacturers</li>
+                <li>Storage and handling that protects shelf life</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="acc">
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="svc2">
+              <span class="acc__n">2.</span>
+              <span class="acc__t">business analysis</span>
+              <span class="acc__ico" aria-hidden="true"></span>
+              <span class="acc__thumb" aria-hidden="true"><img src="assets/img/work-4-company.jpeg" alt="" width="1200" height="800" loading="lazy"></span>
+            </button>
+            <div class="acc__panel" id="svc2">
+              <ul>
+                <li>Demand and market analysis before a line is opened</li>
+                <li>Supplier evaluation, pricing and margin modelling</li>
+                <li>Import planning and cost control</li>
+                <li>Reporting that keeps the team pointed the same way</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="acc">
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="svc3">
+              <span class="acc__n">3.</span>
+              <span class="acc__t">brand partnerships</span>
+              <span class="acc__ico" aria-hidden="true"></span>
+              <span class="acc__thumb" aria-hidden="true"><img src="assets/img/note-2.jpeg" alt="" width="1200" height="673" loading="lazy"></span>
+            </button>
+            <div class="acc__panel" id="svc3">
+              <ul>
+                <li>Representation agreements with manufacturers</li>
+                <li>Onboarding a new brand into the Iranian market</li>
+                <li>Regulatory and import documentation</li>
+                <li>Joint presence at congresses and exhibitions</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="acc">
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="svc4">
+              <span class="acc__n">4.</span>
+              <span class="acc__t">training &amp; support</span>
+              <span class="acc__ico" aria-hidden="true"></span>
+              <span class="acc__thumb" aria-hidden="true"><img src="assets/img/work-1-materials.jpg" alt="" width="1200" height="800" loading="lazy"></span>
+            </button>
+            <div class="acc__panel" id="svc4">
+              <ul>
+                <li>Product training for dentists and technicians</li>
+                <li>Hands-on workshops with visiting specialists</li>
+                <li>After-sales technical support</li>
+                <li>Carrying clinic feedback back to the manufacturer</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <img class="stage__static" src="assets/img/card-back.jpeg" alt="" width="960" height="1200" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ---------------- 4.3 ABOUT ---------------- -->
+  <section class="section about" id="about">
+    <div class="shell about__inner">
+      <div class="about__col">
+        <h2 class="h2">About me</h2>
+        <p class="lead">"I am a learner. I try my best every day — that's enough." I studied information technology at Sheikh Bahaei University and executive management at the University of Isfahan, and I've spent the years since 2013 building Wira Bonyan Apadana into a dependable name in dental materials.</p>
+
+        <ul class="counters">
+          <li><span class="counters__n" data-count="13">0</span><span class="counters__l">Years Leading the Company</span></li>
+          <li><span class="counters__n" data-count="15">0</span><span class="counters__l">Years in the Industry</span></li>
+          <li><span class="counters__n" data-count="2013">0</span><span class="counters__l">The Year It Started</span></li>
+        </ul>
+
+        <div class="about__contact">
+          <p><span class="label">Call or WhatsApp :</span> <a href="tel:+989131067381">+98 913 106 7381</a></p>
+          <p><span class="label">Telegram :</span> <a href="https://t.me/farzinfaghihi" target="_blank" rel="noopener">@farzinfaghihi</a></p>
+        </div>
+
+        <div class="about__foot">
+          <ul class="socials">
+            <li><a href="https://www.linkedin.com/in/farzin-faghihi-779788153/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5"/><path d="M7.3 10.6v6.2M7.3 7.3v.01M11.4 16.8v-6.2m0 2.4a2.3 2.3 0 0 1 4.6 0v3.8"/></svg></a></li>
+            <li><a href="https://www.instagram.com/farzinfaghihi" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg></a></li>
+            <li><a href="https://t.me/farzinfaghihi" aria-label="Telegram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4.2 2.9 11.1l5 1.8L20.1 5.4l-9.4 9 .4 5 2.9-3.5 4.7 3.4z"/></svg></a></li>
+            <li><a href="https://wa.me/989131067381" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L3.5 20.5l1.6-4.2A8.5 8.5 0 1 1 20.5 11.7Z"/><path d="M9 8.6c.3 2.5 2.3 4.5 4.8 5"/></svg></a></li>
+          </ul>
+          <a class="btn-pill" href="#career">My Story</a>
+        </div>
+      </div>
+
+      <img class="stage__static" src="assets/img/card-front.jpg" alt="" width="620" height="630" loading="lazy">
+    </div>
+  </section>
+</div><!-- /stage -->
+
+<!-- ---------------- 4.4 SELECTED WORK ----------------
+     DRAFT: the covers are still the placeholder images from the clone.
+     Card 4 is taken from LinkedIn; cards 1–3 describe the company and
+     need Farzin's own wording and photographs.
+     ---------------------------------------------------- -->
+<section class="section projects" id="projects">
+  <div class="shell">
+    <div class="head">
+      <h2 class="h2">Selected Work</h2>
+      <p class="lead">What the work looks like day to day, where I learned to do it, and the company it all belongs to.</p>
+    </div>
+
+    <div class="projects__list">
+      <a class="pcard" href="#contact">
+        <img src="assets/img/work-1-materials.jpg" alt="Materials portfolio" width="1200" height="800" loading="lazy">
+        <div class="pcard__body">
+          <span class="tag">Distribution</span>
+          <h3 class="pcard__title">The Materials Portfolio</h3>
+          <p>Restorative, endodontic and prosthetic materials selected from international manufacturers, brought through import and into the hands of the people who use them.</p>
+        </div>
+      </a>
+
+      <a class="pcard" href="#contact">
+        <img src="assets/img/work-2-training.jpeg" alt="A training session in progress" width="1023" height="681" loading="lazy">
+        <div class="pcard__body">
+          <span class="tag">Training</span>
+          <h3 class="pcard__title">Training &amp; Congress Presence</h3>
+          <p>Product training, hands-on workshops and a stand at the dental congresses — because a material only performs as well as the hands using it.</p>
+        </div>
+      </a>
+
+      <a class="pcard" href="#contact">
+        <img src="assets/img/work-3-aris-vira.jpeg" alt="Project planning on paper beside a laptop" width="1023" height="683" loading="lazy">
+        <div class="pcard__body">
+          <span class="tag">2011 — 2012</span>
+          <h3 class="pcard__title">Aris Vira Vision</h3>
+          <p>Project Development Manager in Tehran, part-time, for a year — the groundwork in how a project is scoped, costed and carried through.</p>
+        </div>
+      </a>
+
+      <a class="pcard" href="#contact">
+        <img src="assets/img/work-4-company.jpeg" alt="Wira Bonyan Apadana" width="1200" height="800" loading="lazy">
+        <div class="pcard__body">
+          <span class="tag">Jul 2013 — Present</span>
+          <h3 class="pcard__title">Wira Bonyan Apadana</h3>
+          <p>Founded in Isfahan in 2013 and led since as CEO — from a single supply line to a working portfolio of dental materials serving clinics and laboratories.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="section__more"><a class="btn-pill" href="#contact">Start a Conversation</a></div>
+  </div>
+</section>
+
+<!-- ---------------- 4.5 CAREER ----------------
+     Every fact in this section comes straight from Farzin's LinkedIn
+     profile. The grid rhythm is the clone's: two cards, two stat cards
+     breaking the rhythm, two more cards.
+     -------------------------------------------- -->
+<section class="section clients" id="career">
+  <div class="shell">
+    <div class="head">
+      <h2 class="h2">Career &amp; Education</h2>
+      <p class="lead">Fifteen years between Tehran and Isfahan — a degree in information technology, a master's in executive management, and a company of my own since 2013.</p>
+    </div>
+
+    <div class="clients__grid">
+      <figure class="tcard">
+        <span class="tag">Jul 2013 — Present</span>
+        <blockquote>Founder and CEO at Wira Bonyan Apadana. Thirteen years building the company from the ground up, across business analysis and dental materials.</blockquote>
+        <figcaption>
+          <span><b>Wira Bonyan Apadana</b><small>Isfahan Province, Iran</small></span>
+        </figcaption>
+      </figure>
+
+      <figure class="tcard">
+        <span class="tag">Mar 2011 — Mar 2012</span>
+        <blockquote>Project Development Manager, part-time. A year in Tehran learning how projects are scoped, costed and delivered before starting my own company.</blockquote>
+        <figcaption>
+          <span><b>Aris Vira Vision</b><small>Tehran Province, Iran</small></span>
+        </figcaption>
+      </figure>
+
+      <!-- stat cards deliberately break the grid rhythm (spec 4.5) -->
+      <div class="scard scard--white">
+        <p class="scard__lead">Leading Wira Bonyan Apadana since the day it was founded</p>
+        <span class="scard__n" data-count="13">0</span>
+        <span class="scard__l">Years as CEO</span>
+      </div>
+
+      <div class="scard scard--lime">
+        <p class="scard__lead">Sampad, then Sheikh Bahaei University, then the University of Isfahan</p>
+        <span class="scard__n" data-count="3">0</span>
+        <span class="scard__l">Schools &amp; Universities</span>
+      </div>
+
+      <figure class="tcard">
+        <span class="tag">2011 — 2013</span>
+        <blockquote>Master's degree in Executive Management — the formal grounding for running a company rather than only working inside one.</blockquote>
+        <figcaption>
+          <span><b>University of Isfahan</b><small>Master's degree</small></span>
+        </figcaption>
+      </figure>
+
+      <figure class="tcard">
+        <span class="tag">2005 — 2010</span>
+        <blockquote>Bachelor's degree in Information Technology, and before that a high school diploma in mathematics at Sampad.</blockquote>
+        <figcaption>
+          <span><b>Sheikh Bahaei University</b><small>Bachelor's degree</small></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------- 4.6 FAQ ----------------
+     Answers 1, 2, 4 and 6 are grounded in the LinkedIn profile.
+     3 and 5 are drafts — they need Farzin's confirmation.
+     ------------------------------------------ -->
+<section class="section faq" id="faq">
+  <div class="shell faq__inner">
+    <div class="faq__head">
+      <h2 class="h2">Frequently Asked Questions</h2>
+      <p class="lead">The questions clinics, laboratories and manufacturers ask most often. If yours isn't here, write to me — I'd rather answer it directly.</p>
+    </div>
+
+    <div class="acc-list acc-list--faq" id="faqAcc">
+      <div class="acc">
+        <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq1">
+          <span class="acc__n">1.</span>
+          <span class="acc__t">What does Wira Bonyan Apadana do?</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__panel" id="faq1"><p>We work in dental materials — sourcing them from international manufacturers and supplying clinics, laboratories and distributors, with business analysis behind every line we open.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq2">
+          <span class="acc__n">2.</span>
+          <span class="acc__t">Where are you based?</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__panel" id="faq2"><p>Isfahan Province, Iran. The company has been based here since it was founded in 2013.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq3">
+          <span class="acc__n">3.</span>
+          <span class="acc__t">Who do you supply?</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__panel" id="faq3"><p>Dental clinics, dental laboratories and regional distributors. Get in touch and tell me what you work with — the answer depends on what you need and where you are.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq4">
+          <span class="acc__n">4.</span>
+          <span class="acc__t">What is your background?</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__panel" id="faq4"><p>A bachelor's in information technology from Sheikh Bahaei University, a master's in executive management from the University of Isfahan, and a year as project development manager at Aris Vira Vision before founding this company.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq5">
+          <span class="acc__n">5.</span>
+          <span class="acc__t">Do you represent new brands?</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__panel" id="faq5"><p>Yes — I'm open to representation and distribution agreements with manufacturers looking for a route into the Iranian market. Send the product line and we'll talk.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq6">
+          <span class="acc__n">6.</span>
+          <span class="acc__t">How do I get in touch?</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__panel" id="faq6"><p>Use the form at the bottom of this page, or reach me on LinkedIn. Tell me what you need and I'll come back to you.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NOTES & INSIGHTS — SWITCHED OFF at the client's request.
+     Nothing is deleted: delete this comment wrapper and the closing
+     marker below to bring the whole section back.
+     ============================================================
+
+<section class="section insights" id="insights">
+  <div class="shell">
+    <div class="head">
+      <h2 class="h2">Notes &amp; Insights</h2>
+      <p class="lead">Occasional notes on the dental materials trade in Iran — sourcing, importing, and what actually reaches the chair.</p>
+    </div>
+
+    <div class="insights__grid">
+      <a class="bcard" href="#contact">
+        <img src="assets/img/note-1.jpeg" alt="" width="1200" height="673" loading="lazy">
+        <div class="bcard__meta"><span class="tag tag--outline">Draft</span><time datetime="2026-01-01">Coming soon</time></div>
+        <h3 class="bcard__title">Choosing a material a clinic will trust</h3>
+        <p>An article slot, waiting for its text — what to weigh when a new restorative line is put in front of you.</p>
+      </a>
+
+      <a class="bcard" href="#contact">
+        <img src="assets/img/note-2.jpeg" alt="" width="1200" height="673" loading="lazy">
+        <div class="bcard__meta"><span class="tag tag--outline">Draft</span><time datetime="2026-01-01">Coming soon</time></div>
+        <h3 class="bcard__title">From manufacturer to chairside</h3>
+        <p>An article slot, waiting for its text — the route a box of material takes before a dentist ever opens it.</p>
+      </a>
+    </div>
+
+    <div class="section__more"><a class="btn-pill" href="#contact">Get in Touch</a></div>
+  </div>
+</section>
+
+     END OF THE SWITCHED-OFF SECTION -->
+
+<!-- ---------------- 4.8 CONTACT ---------------- -->
+<section class="section contact" id="contact">
+  <div class="shell contact__inner">
+    <div class="contact__media">
+      <div class="portrait">
+        <img src="assets/img/card-front.jpg" alt="Farzin Faghihi" width="620" height="630" loading="lazy">
+      </div>
+      <span class="hi hi--static"><span class="hi__hand">✋</span><span class="hi__txt">Hi</span></span>
+    </div>
+
+    <div class="contact__body">
+      <h2 class="h2">Let's work together</h2>
+      <p class="lead">Whether you run a clinic, a laboratory, or a manufacturer looking for a partner in Iran — tell me what you need and I'll answer myself.</p>
+
+      <form class="form" id="contactForm" novalidate>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+          <p class="field__err" data-err="name" hidden></p>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+          <p class="field__err" data-err="email" hidden></p>
+        </div>
+        <div class="field field--full">
+          <label for="f-service">What is this about ?</label>
+          <div class="select">
+            <select id="f-service" name="service" required>
+              <option value="" selected disabled>Select…</option>
+              <option>Dental materials supply</option>
+              <option>Brand representation</option>
+              <option>Training or workshop</option>
+              <option>Something else</option>
+            </select>
+            <span class="select__ico" aria-hidden="true"></span>
+          </div>
+          <p class="field__err" data-err="service" hidden></p>
+        </div>
+        <div class="field field--full">
+          <label for="f-msg">How can I help ?</label>
+          <textarea id="f-msg" name="message" rows="5" placeholder="Hello, I'd like to enquire about..." required></textarea>
+          <p class="field__err" data-err="message" hidden></p>
+        </div>
+        <div class="field field--full">
+          <button class="btn-pill btn-pill--submit" type="submit" id="submitBtn">Send</button>
+          <p class="form__hint">This opens WhatsApp with your message already written — you just press send.</p>
+          <p class="form__note" role="status" id="formStatus"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ---------------- 4.9 FOOTER (lime) ---------------- -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__row">
+      <p><span class="label">Call or WhatsApp :</span> <a href="tel:+989131067381">+98 913 106 7381</a></p>
+      <p><span class="label">Telegram :</span> <a href="https://t.me/farzinfaghihi" target="_blank" rel="noopener">@farzinfaghihi</a></p>
+      <div class="footer__social">
+        <span class="label">Social :</span>
+        <ul class="socials socials--dark">
+          <li><a href="https://www.linkedin.com/in/farzin-faghihi-779788153/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5"/><path d="M7.3 10.6v6.2M7.3 7.3v.01M11.4 16.8v-6.2m0 2.4a2.3 2.3 0 0 1 4.6 0v3.8"/></svg></a></li>
+          <li><a href="https://www.instagram.com/farzinfaghihi" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg></a></li>
+          <li><a href="https://t.me/farzinfaghihi" aria-label="Telegram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4.2 2.9 11.1l5 1.8L20.1 5.4l-9.4 9 .4 5 2.9-3.5 4.7 3.4z"/></svg></a></li>
+          <li><a href="https://wa.me/989131067381" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L3.5 20.5l1.6-4.2A8.5 8.5 0 1 1 20.5 11.7Z"/><path d="M9 8.6c.3 2.5 2.3 4.5 4.8 5"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bar">
+      <small>© 2026 ESLN. All rights reserved.</small>
+      <span class="footer__by">Farzin Faghihi — Isfahan, Iran</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# the earlier bilingual build is kept for reference, not for readers
+Disallow: /_archive-fa-bilingual/
